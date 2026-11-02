@@ -460,7 +460,7 @@
       return;
     }
 
-    window.location.href = "/quiz/play.html";
+    window.location.href = "play.html";
   });
 
   refresh();

@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +15,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#6D28D9">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -20,7 +25,7 @@
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="/" class="logo" aria-label="Avisite home">Avisite</a>
+      <a href="./" class="logo" aria-label="Avisite home">Avisite</a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -32,12 +37,12 @@
 
       <nav class="nav" id="site-nav" aria-label="Main navigation">
         <ul class="nav__list">
-          <li><a class="nav__link" href="/" aria-current="page">Home</a></li>
-          <li><a class="nav__link" href="/tools/">Tools</a></li>
-          <li><a class="nav__link" href="/quiz/">Quiz</a></li>
-          <li><a class="nav__link" href="/blog/">Blog</a></li>
-          <li><a class="nav__link" href="/about.html">About</a></li>
-          <li><a class="nav__link" href="/contact.html">Contact</a></li>
+          <li><a class="nav__link" href="./" aria-current="page">Home</a></li>
+          <li><a class="nav__link" href="./tools/">Tools</a></li>
+          <li><a class="nav__link" href="./quiz/">Quiz</a></li>
+          <li><a class="nav__link" href="./blog/">Blog</a></li>
+          <li><a class="nav__link" href="./about.html">About</a></li>
+          <li><a class="nav__link" href="./contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -54,8 +59,8 @@
           so your files never leave your device.
         </p>
         <div class="stack" style="display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center;">
-          <a class="btn btn--primary" href="/tools/">Explore all tools</a>
-          <a class="btn btn--outline" href="/blog/">Read the guides</a>
+          <a class="btn btn--primary" href="./tools/">Explore all tools</a>
+          <a class="btn btn--outline" href="./blog/">Read the guides</a>
         </div>
       </div>
     </section>
@@ -67,25 +72,25 @@
         <p class="text-muted">The tools people use most, free and without sign-up.</p>
 
         <div class="grid grid--2 grid--4 mt-4">
-          <a class="card" href="/tools/image-compressor.html">
+          <a class="card" href="./tools/image-compressor.html">
             <div class="card__icon" aria-hidden="true">🖼️</div>
             <h3 class="card__title">Image Compressor</h3>
             <p class="card__text">Reduce JPG, PNG and WebP file size without losing much quality.</p>
           </a>
 
-          <a class="card" href="/tools/image-to-pdf.html">
+          <a class="card" href="./tools/image-to-pdf.html">
             <div class="card__icon" aria-hidden="true">📄</div>
             <h3 class="card__title">Image to PDF</h3>
             <p class="card__text">Turn one or more images into a single PDF file.</p>
           </a>
 
-          <a class="card" href="/tools/merge-pdf.html">
+          <a class="card" href="./tools/merge-pdf.html">
             <div class="card__icon" aria-hidden="true">🔗</div>
             <h3 class="card__title">Merge PDF</h3>
             <p class="card__text">Combine several PDF files into one document, in the order you choose.</p>
           </a>
 
-          <a class="card" href="/tools/compress-pdf.html">
+          <a class="card" href="./tools/compress-pdf.html">
             <div class="card__icon" aria-hidden="true">🗜️</div>
             <h3 class="card__title">Compress PDF</h3>
             <p class="card__text">Make large PDF files smaller for email and uploads.</p>
@@ -100,12 +105,12 @@
         <h2>Study quizzes</h2>
         <p class="text-muted">Turn your PDFs into a question bank and take practice or exam-style tests.</p>
         <div class="grid grid--2 mt-4">
-          <a class="card" href="/quiz/">
+          <a class="card" href="./quiz/">
             <div class="card__icon" aria-hidden="true">📝</div>
             <h3 class="card__title">Quiz maker</h3>
             <p class="card__text">Create questions from any PDF with AI, then practice or take a timed exam.</p>
           </a>
-          <a class="card" href="/quiz/start.html">
+          <a class="card" href="./quiz/start.html">
             <div class="card__icon" aria-hidden="true">⏱️</div>
             <h3 class="card__title">Build a test</h3>
             <p class="card__text">Pick topics and the number of questions, and start an exam-style test.</p>
@@ -121,12 +126,13 @@
         <p class="text-muted">Step-by-step help for common file tasks.</p>
 
         <div class="grid grid--2 mt-4">
-          <a class="card" href="/blog/how-to-compress-pdf.html">
-            <h3 class="card__title">How to compress a PDF</h3>
-            <p class="card__text">Simple ways to reduce PDF size for email, forms and job portals.</p>
+          {% for post in site.posts limit: 2 %}
+          <a class="card" href="{{ post.url | relative_url }}">
+            <h3 class="card__title">{{ post.title }}</h3>
+            <p class="card__text">{{ post.description }}</p>
           </a>
-
-          <a class="card" href="/blog/">
+          {% endfor %}
+          <a class="card" href="./blog/">
             <h3 class="card__title">More guides</h3>
             <p class="card__text">Browse all articles on images, PDFs and online tools.</p>
           </a>
@@ -134,7 +140,6 @@
       </div>
     </section>
 
-    <!-- Trust -->
     <section class="section section--soft">
       <div class="container">
         <h2>Why Avisite?</h2>
@@ -160,13 +165,13 @@
   <footer class="site-footer">
     <div class="container">
       <ul class="site-footer__links">
-        <li><a href="/tools/">Tools</a></li>
-        <li><a href="/quiz/">Quiz</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="./tools/">Tools</a></li>
+        <li><a href="./quiz/">Quiz</a></li>
+        <li><a href="./blog/">Blog</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="./terms.html">Terms</a></li>
       </ul>
       <p>&copy; 2026 Avisite. Your files are processed on your device.</p>
     </div>

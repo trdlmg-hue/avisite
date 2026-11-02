@@ -61,3 +61,81 @@
     }
   });
 })();
+
+
+/* ==========================================================================
+   Service worker aur "Install app" banner (PWA)
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      // Sw ka path manifest.json ke path se nikalte hain, taaki subfolder (/avisite/) par bhi chale
+    var manifestLink = document.querySelector('link[rel="manifest"]');
+    var root = manifestLink ? new URL(manifestLink.getAttribute("href"), location.href) : new URL("./", location.href);
+    navigator.serviceWorker.register(new URL("sw.js", root)).catch(function () {
+        /* offline support optional hai, error ignore */
+      });
+    });
+  }
+
+  // Install banner (Android Chrome par "beforeinstallprompt" aata hai)
+  var deferredPrompt = null;
+  var DISMISS_KEY = "avisiteInstallDismissed";
+
+  function showBanner() {
+    if (document.getElementById("install-banner")) { return; }
+    var bar = document.createElement("div");
+    bar.id = "install-banner";
+    bar.className = "install-banner";
+    bar.setAttribute("role", "region");
+    bar.setAttribute("aria-label", "Install Avisite app");
+
+    var text = document.createElement("span");
+    text.textContent = "Avisite ko phone par app ki tarah install karein.";
+
+    var install = document.createElement("button");
+    install.type = "button";
+    install.className = "btn btn--primary install-banner__btn";
+    install.textContent = "Install";
+    install.addEventListener("click", function () {
+      if (!deferredPrompt) { return; }
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.finally(function () {
+        deferredPrompt = null;
+        bar.remove();
+      });
+    });
+
+    var close = document.createElement("button");
+    close.type = "button";
+    close.className = "install-banner__close";
+    close.setAttribute("aria-label", "Close");
+    close.textContent = "×";
+    close.addEventListener("click", function () {
+      try { localStorage.setItem(DISMISS_KEY, "1"); } catch (e) { /* ignore */ }
+      bar.remove();
+    });
+
+    bar.appendChild(text);
+    bar.appendChild(install);
+    bar.appendChild(close);
+    document.body.appendChild(bar);
+  }
+
+  window.addEventListener("beforeinstallprompt", function (event) {
+    event.preventDefault();
+    try {
+      if (localStorage.getItem(DISMISS_KEY) === "1") { return; }
+    } catch (e) { /* ignore */ }
+    deferredPrompt = event;
+    showBanner();
+  });
+
+  window.addEventListener("appinstalled", function () {
+    deferredPrompt = null;
+    var bar = document.getElementById("install-banner");
+    if (bar) { bar.remove(); }
+  });
+})();

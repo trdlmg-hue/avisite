@@ -107,7 +107,7 @@
 
   var session = readStore(sessionStorage, SESSION_KEY);
   if (!session || !session.quiz || !Array.isArray(session.quiz.questions)) {
-    window.location.replace("/quiz/start.html");
+    window.location.replace("start.html");
     return;
   }
 

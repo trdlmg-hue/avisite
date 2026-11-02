@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compress PDF - Reduce PDF File Size Online Free</title>
+  <meta name="description" content="Reduce PDF file size for email, forms and job portals. Choose text-keeping or maximum compression. Your PDF is compressed in your browser, not uploaded.">
+  <link rel="canonical" href="https://avisite.com/tools/compress-pdf.html">
+  <meta property="og:title" content="Compress PDF - Reduce PDF File Size Online Free">
+  <meta property="og:description" content="Make your PDF smaller, right in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avisite.com/tools/compress-pdf.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Avisite Compress PDF",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is my PDF uploaded to a server?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The PDF is compressed inside your browser, and it is not sent to Avisite's servers." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will compressing a PDF reduce the text quality?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The Keep text mode keeps the text sharp and selectable. The Smaller mode turns each page into an image, which gives a much smaller file but the text cannot be selected or searched." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I make a PDF under 100 KB or 200 KB?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use the Smaller mode with Low quality. If it is still big, reduce the number of pages or compress the images inside the PDF first." }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#6D28D9">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js" defer></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+  <script src="../js/tools/compress-pdf.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="../" class="logo" aria-label="Avisite home">Avisite</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="../">Home</a></li>
+          <li><a class="nav__link" href="../tools/" aria-current="page">Tools</a></li>
+          <li><a class="nav__link" href="../quiz/">Quiz</a></li>
+          <li><a class="nav__link" href="../blog/">Blog</a></li>
+          <li><a class="nav__link" href="../about.html">About</a></li>
+          <li><a class="nav__link" href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container" style="max-width: 760px;">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../">Home</a></li>
+            <li><a href="../tools/">Tools</a></li>
+            <li aria-current="page">Compress PDF</li>
+          </ol>
+        </nav>
+
+        <h1>Compress PDF</h1>
+        <p class="text-muted">Make your PDF smaller for email, forms and job portals. Your file is compressed in your browser and is never uploaded.</p>
+
+        <!-- Step 1: file -->
+        <div class="card mt-4">
+          <h2 class="card__title">1. Choose a PDF</h2>
+          <label class="drop-zone" id="cp-drop" for="cp-file">
+            <span id="cp-drop-text">Tap to choose a PDF, or drag it here</span>
+          </label>
+          <input id="cp-file" class="visually-hidden" type="file" accept="application/pdf,.pdf">
+          <div id="cp-original" class="text-muted mt-2" role="status" aria-live="polite"></div>
+          <div id="cp-status" class="text-muted mt-2" role="status" aria-live="polite"></div>
+          <div id="cp-error" class="alert alert--error mt-2" role="alert" hidden></div>
+        </div>
+
+        <!-- Step 2: settings -->
+        <div class="card mt-4" id="cp-controls" hidden>
+          <h2 class="card__title">2. Choose compression</h2>
+
+          <div class="field">
+            <label for="cp-mode">Mode</label>
+            <select id="cp-mode">
+              <option value="light" selected>Keep text (text stays selectable, smaller size reduction)</option>
+              <option value="images">Smaller (much smaller file, text becomes an image)</option>
+            </select>
+          </div>
+
+          <div class="field" id="cp-preset-wrap">
+            <label for="cp-preset">Image quality</label>
+            <select id="cp-preset">
+              <option value="low">Low (smallest file, for forms and email)</option>
+              <option value="medium" selected>Medium (good balance)</option>
+              <option value="high">High (sharper, bigger file)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cp-name">Compressed file name</label>
+            <input id="cp-name" type="text" value="compressed" maxlength="60">
+          </div>
+
+          <button id="cp-compress" class="btn btn--primary btn--block" type="button" disabled>Compress PDF</button>
+        </div>
+
+        <!-- Step 3: result -->
+        <div class="card mt-4" id="cp-result" hidden>
+          <h2 class="card__title">3. Your compressed PDF</h2>
+          <p id="cp-info"></p>
+          <div id="cp-note" class="alert alert--error mt-2" hidden></div>
+          <a id="cp-download" class="btn btn--primary btn--block mt-2" href="#" download>Download compressed PDF</a>
+        </div>
+
+        <!-- How to use and FAQ -->
+        <section class="mt-4">
+          <h2>How to compress a PDF</h2>
+          <ol>
+            <li>Choose the PDF from your phone or computer.</li>
+            <li>Start with <strong>Keep text</strong>. If the file is still too big, try <strong>Smaller</strong>.</li>
+            <li>For Smaller mode, pick a quality. Low gives the smallest file.</li>
+            <li>Press <strong>Compress PDF</strong>, check the new size, and download it.</li>
+          </ol>
+
+          <h2 class="mt-4">Which mode should I use?</h2>
+          <ul>
+            <li><strong>Keep text</strong>: best when you need to search or copy text from the PDF, such as notes or reports. It removes extra data but keeps the pages as they are.</li>
+            <li><strong>Smaller</strong>: best for scanned documents, forms and photos inside a PDF. Each page becomes a high-quality image, so the size drops a lot, but the text cannot be selected.</li>
+          </ul>
+
+          <h2 class="mt-4">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Is my PDF uploaded to a server?</summary>
+              <p>No. The PDF is compressed inside your browser, and it is not sent to Avisite's servers.</p>
+            </details>
+            <details>
+              <summary>Will compressing a PDF reduce the text quality?</summary>
+              <p>The Keep text mode keeps the text sharp and selectable. The Smaller mode turns each page into an image, which gives a much smaller file, but the text cannot be selected or searched.</p>
+            </details>
+            <details>
+              <summary>How do I make a PDF under 100 KB or 200 KB?</summary>
+              <p>Use Smaller mode with Low quality. If it is still big, reduce the number of pages, or compress the photos inside the PDF first with our Image Compressor.</p>
+            </details>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="site-footer__links">
+        <li><a href="../tools/">Tools</a></li>
+        <li><a href="../quiz/">Quiz</a></li>
+        <li><a href="../blog/">Blog</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="../terms.html">Terms</a></li>
+      </ul>
+      <p>&copy; 2026 Avisite. Your files are processed on your device.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

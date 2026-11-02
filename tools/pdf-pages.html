@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Pages - Rotate, Extract or Delete PDF Pages Free</title>
+  <meta name="description" content="Rotate, extract or delete pages of a PDF for free. Works in your browser, so your PDF is never uploaded to a server.">
+  <link rel="canonical" href="https://avisite.com/tools/pdf-pages.html">
+  <meta property="og:title" content="PDF Pages - Rotate, Extract or Delete PDF Pages Free">
+  <meta property="og:description" content="Rotate, extract or delete PDF pages right in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avisite.com/tools/pdf-pages.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Avisite PDF Pages",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I rotate only some pages of a PDF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Enter page numbers such as 1-3, 5 to rotate only those pages. Leave the box empty to rotate every page." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my PDF uploaded to a server?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The pages are changed inside your browser, and your file is not sent to Avisite's servers." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I delete all pages?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. A PDF must keep at least one page, so the tool stops you if you try to delete every page." }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#6D28D9">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js" defer></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+  <script src="../js/tools/pdf-pages.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="../" class="logo" aria-label="Avisite home">Avisite</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="../">Home</a></li>
+          <li><a class="nav__link" href="../tools/" aria-current="page">Tools</a></li>
+          <li><a class="nav__link" href="../quiz/">Quiz</a></li>
+          <li><a class="nav__link" href="../blog/">Blog</a></li>
+          <li><a class="nav__link" href="../about.html">About</a></li>
+          <li><a class="nav__link" href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container" style="max-width: 760px;">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../">Home</a></li>
+            <li><a href="../tools/">Tools</a></li>
+            <li aria-current="page">PDF Pages</li>
+          </ol>
+        </nav>
+
+        <h1>PDF Pages</h1>
+        <p class="text-muted">Rotate, extract or delete pages of a PDF. Everything happens in your browser.</p>
+
+        <!-- Step 1: PDF file -->
+        <div class="card mt-4">
+          <h2 class="card__title">1. Choose a PDF</h2>
+          <label class="drop-zone" id="pp-drop" for="pp-file">
+            <span id="pp-drop-text">Tap to choose a PDF, or drag it here</span>
+          </label>
+          <input id="pp-file" class="visually-hidden" type="file" accept="application/pdf,.pdf">
+          <div id="pp-error" class="alert alert--error mt-2" role="alert" hidden></div>
+          <div id="pp-status" class="text-muted mt-2" role="status" aria-live="polite"></div>
+        </div>
+
+        <!-- Step 2: what to do -->
+        <div class="card mt-4" id="pp-controls" hidden>
+          <h2 class="card__title">2. Choose what to do</h2>
+          <p id="pp-info" class="text-muted"></p>
+
+          <div class="field">
+            <label for="pp-action">Action</label>
+            <select id="pp-action">
+              <option value="rotate" selected>Rotate pages</option>
+              <option value="extract">Extract pages (keep only these)</option>
+              <option value="delete">Delete pages</option>
+            </select>
+          </div>
+
+          <div class="field" id="pp-range-wrap">
+            <label for="pp-range">Pages (jaise 1-3, 5)</label>
+            <input id="pp-range" type="text" inputmode="numeric" placeholder="e.g. 1-3, 5" autocomplete="off">
+          </div>
+
+          <div class="field" id="pp-angle-wrap">
+            <label for="pp-angle">Rotation</label>
+            <select id="pp-angle">
+              <option value="90" selected>90 degrees clockwise</option>
+              <option value="180">180 degrees</option>
+              <option value="270">90 degrees counter-clockwise</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="pp-name">PDF file name</label>
+            <input id="pp-name" type="text" value="pages" maxlength="60">
+          </div>
+
+          <div class="quiz-actions">
+            <button id="pp-run" class="btn btn--primary" type="button" disabled>Make PDF</button>
+          </div>
+        </div>
+
+        <!-- Step 3: result -->
+        <div class="card mt-4" id="pp-result" hidden>
+          <h2 class="card__title">3. Your PDF</h2>
+          <p id="pp-result-info"></p>
+          <a id="pp-download" class="btn btn--primary btn--block" href="#" download>Download PDF</a>
+        </div>
+
+        <!-- How to use and FAQ -->
+        <section class="mt-4">
+          <h2>How to rotate, extract or delete PDF pages</h2>
+          <ol>
+            <li>Choose a PDF file. The tool shows how many pages it has.</li>
+            <li>Pick an action: rotate, extract or delete.</li>
+            <li>Enter page numbers, such as <strong>1-3, 5</strong>. For rotate, leave the box empty to turn every page.</li>
+            <li>Press <strong>Make PDF</strong> and download the new file.</li>
+          </ol>
+
+          <h2 class="mt-4">When is this useful?</h2>
+          <p>A scanned page that was saved sideways, a form with one page you need alone, or a document with a few pages you do not want to share are common cases. This tool handles them without any software to install.</p>
+
+          <h2 class="mt-4">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Can I rotate only some pages of a PDF?</summary>
+              <p>Yes. Enter page numbers such as 1-3, 5 to rotate only those pages. Leave the box empty to rotate every page.</p>
+            </details>
+            <details>
+              <summary>Is my PDF uploaded to a server?</summary>
+              <p>No. The pages are changed inside your browser, and your file is not sent to Avisite's servers.</p>
+            </details>
+            <details>
+              <summary>Can I delete all pages?</summary>
+              <p>No. A PDF must keep at least one page, so the tool stops you if you try to delete every page.</p>
+            </details>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="site-footer__links">
+        <li><a href="../tools/">Tools</a></li>
+        <li><a href="../quiz/">Quiz</a></li>
+        <li><a href="../blog/">Blog</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="../terms.html">Terms</a></li>
+      </ul>
+      <p>&copy; 2026 Avisite. Your files are processed on your device.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

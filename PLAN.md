@@ -69,11 +69,11 @@ avisite/
 - [x] `index.html` - home (hero, popular tools grid, latest blog, trust section)
 - [x] `tools/index.html` - sabhi tools ki listing
 - [x] `blog/index.html` - blog listing (abhi koi post nahi, "Coming soon" card hai)
-- [ ] `about.html`
-- [ ] `contact.html`
-- [ ] `privacy-policy.html` (clearly likho: files device se bahar nahi jaati)
-- [ ] `terms.html`
-- [ ] `404.html`
+- [x] `about.html`
+- [x] `contact.html`
+- [x] `privacy-policy.html` (clearly likho: files device se bahar nahi jaati)
+- [x] `terms.html`
+- [x] `404.html`
 
 ## Phase 4: Tools (ek ek karke, MVP order)
 Har tool ka template same rahega:
@@ -85,11 +85,11 @@ Har tool ka template same rahega:
 6. Neeche: "Kaise use karein" (3-5 steps), FAQ (3-5), 300+ words ka useful text
 
 Tools ka order:
-- [ ] 4.1 Image compressor (Canvas API) - `tools/image-compressor.html`
-- [ ] 4.2 Image to PDF (pdf-lib) - `tools/image-to-pdf.html`
-- [ ] 4.3 PDF merge (pdf-lib) - `tools/merge-pdf.html`
-- [ ] 4.4 PDF compress / split (pdf-lib) - `tools/compress-pdf.html`
-- [ ] 4.5 PDF rotate / page extract
+- [x] 4.1 Image compressor (Canvas API) - `tools/image-compressor.html`
+- [x] 4.2 Image to PDF (pdf-lib) - `tools/image-to-pdf.html`
+- [x] 4.3 PDF merge (pdf-lib) - `tools/merge-pdf.html`
+- [x] 4.4 PDF compress (Keep text / Smaller images mode) - `tools/compress-pdf.html`. Split abhi baaki.
+- [x] 4.5 PDF rotate / page extract / delete - `tools/pdf-pages.html` + `js/tools/pdf-pages.js`. Browser test pending.
 - [ ] 4.6 Text / word counter, JSON formatter (easy, quick wins)
 - [ ] 4.7 Baad mein: video compress, PDF to Word (server-side, abhi nahi)
 
@@ -131,11 +131,11 @@ Har tool ke liye:
 ## Phase 5: Blog
 - [ ] Blog post template HTML banaya (`blog/_template.html`)
 - [ ] Keyword research kiya (har post ke liye ek primary keyword)
-- [ ] Post 1: `how-to-compress-pdf.html`
-- [ ] Post 2: image compress guide
+- [x] Post 1: `how-to-compress-pdf.html`
+- [x] Post 2: `how-to-convert-images-to-pdf.html` (image compress guide abhi nahi, Post 3 mein)
 - [ ] Post 3: PDF merge guide
-- [ ] Har post mein: title, description, H1, date, reading time, JSON-LD (Article), related tool link
-- [ ] Blog listing `blog/index.html` mein sabhi posts ke links
+- [x] Har post mein: title, description, H1, date, reading time, JSON-LD (Article), related tool link
+- [x] Blog listing `blog/index.html` mein sabhi posts ke links
 - [ ] Har post ko tool page se link kiya aur tool ko post se
 
 Target: hafte mein 2-3 posts.
@@ -193,6 +193,16 @@ Target: hafte mein 2-3 posts.
 ---
 
 ## Progress log
+- 2026-11-02: Jekyll setup (GitHub Pages par built-in): _config.yml (jekyll-sitemap), _layouts/post.html, blog posts ab _posts/ mein Markdown mein, tools list _data/tools.yml se, blog listing, tools listing aur home 'Latest guides' sab auto. robots.txt bana. Naya post = _posts mein ek .md file. Naya tool = _data/tools.yml mein ek entry + tool page. Build test GitHub par pending.
+- 2026-11-02: Blog: 2 posts live (how-to-compress-pdf, how-to-convert-images-to-pdf), dono Article JSON-LD aur tool links ke saath. Blog listing mein real cards. Home page ka 'How to compress a PDF' link ab kaam karta hai.
+- 2026-11-02: PWA (phone par app jaisa install): manifest.json, sw.js (offline cache), icons/icon-192.png aur icon-512.png (placeholder, apna logo baad mein daalein), js/main.js mein service worker registration aur 'Install' banner, sab HTML pages mein manifest links, about.html mein Android aur iPhone install steps. HTTPS hosting par hi install hoga.
+- 2026-11-02: GitHub Pages fix: site project path (trdlmg-hue.github.io/avisite/) par chalti hai. Saare absolute links (/tools/ etc.) relative bana diye (ab kisi bhi subfolder ya custom domain par chalega). sw.js, main.js, manifest.json, quiz redirects bhi relative. _config.yml baseurl "/avisite" hai (Liquid links ke liye). Custom domain (avisite.com) connect karne par baseurl "" kar dena.
+- 2026-11-02: Phase 4.5 PDF Pages ready: tools/pdf-pages.html + js/tools/pdf-pages.js. Rotate (90/180/270, pages chun sakte ho ya sab), Extract (sirf chune pages), Delete (chune pages hatao, saare pages delete nahi ho sakte). Range format 1-3, 5. sw.js cache avisite-v2. Browser test pending.
+- 2026-11-02: Phase 4.4 Compress PDF ready: tools/compress-pdf.html + js/tools/compress-pdf.js. Do modes: Keep text (pdf-lib object streams) aur Smaller (pdf.js se pages ko JPEG image banakar). pdf.js ek CDN (cdnjs) se load hota hai. Browser test pending.
+- 2026-11-02: Phase 4.3 Merge PDF ready: tools/merge-pdf.html + js/tools/merge-pdf.js. Up/Down order, page count per file, remove, 30 files / 150 MB limit, password-protected PDF par saaf message. Browser test pending.
+- 2026-11-02: Phase 4.2 Image to PDF ready: tools/image-to-pdf.html + js/tools/image-to-pdf.js (pdf-lib CDN se). Multiple images, order up/down, remove, page size (A4/Letter/fit), orientation, margin, file name. WebP ko canvas se PNG banaya jaata hai. Browser test pending.
+- 2026-11-02: Phase 4.1 Image Compressor ready: tools/image-compressor.html + js/tools/image-compressor.js. JPG/WebP/PNG output, quality slider, max width, before/after size, download, 20 MB limit, FAQ aur SEO schema. Mobile aur real image test pending.
+- 2026-11-02: Phase 3 complete: about, contact, privacy policy, terms, 404 pages bane. Contact page mein email placeholder hai [YOUR-EMAIL@example.com], use apne email se badalna hai. Privacy aur terms ki date 2 Nov 2026 hai.
 - 2026-11-02: Time guide: start page par recommended time difficulty se aata hai (easy 30 sec, medium 1 min, hard 2 min per question). Auto-fill hota hai, user change kar sakta hai, aur 'Use recommended time' button se wapas aa jaata hai.
 - 2026-11-02: Bug fixes: (1) highlighted options/feedback ka text dark mode mein invisible tha, ab explicit dark text hai. (2) Palette ab practice mein sahi=green, galat=red dikhata hai; exam mein neutral violet; unanswered grey; marked = amber ring. (3) Result page par bhi question map hai (click karne par review par scroll). (4) Question ID ab system text se banata hai, duplicate apne aap pakdta hai. (5) Question bank ko 'Download my question bank (.json)' se computer par save kar sakte ho, wahi file dobara upload ho sakti hai.
 - 2026-11-02: Prompt ab AI se downloadable quiz-pages-FROM-TO.json file maangta hai (agar AI file bana sake). Start page par 'Paste the JSON text instead' option jod diya, taaki download na ho to bhi JSON text paste karke bank mein add ho sake.
