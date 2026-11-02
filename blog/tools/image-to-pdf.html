@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image to PDF - Convert JPG, PNG and WebP to PDF Free</title>
+  <meta name="description" content="Convert JPG, PNG and WebP images to a single PDF for free. Choose the order, page size and margins. Your images stay on your device.">
+  <link rel="canonical" href="https://avisite.com/tools/image-to-pdf.html">
+  <meta property="og:title" content="Image to PDF - Convert JPG, PNG and WebP to PDF Free">
+  <meta property="og:description" content="Turn your images into one PDF, right in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avisite.com/tools/image-to-pdf.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Avisite Image to PDF",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I combine many images into one PDF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Add up to 50 images, arrange them in the order you want, and create one PDF with one image per page." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my images uploaded to a server?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The PDF is created inside your browser, and your images are not sent to Avisite's servers." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my PDF file large?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Large photos make large PDFs. Compress the images first with the Image Compressor, or choose a smaller page size." }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#6D28D9">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js" defer></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+  <script src="../js/tools/image-to-pdf.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/" class="logo" aria-label="Avisite home">Avisite</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="/">Home</a></li>
+          <li><a class="nav__link" href="/tools/" aria-current="page">Tools</a></li>
+          <li><a class="nav__link" href="/quiz/">Quiz</a></li>
+          <li><a class="nav__link" href="/blog/">Blog</a></li>
+          <li><a class="nav__link" href="/about.html">About</a></li>
+          <li><a class="nav__link" href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container" style="max-width: 760px;">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tools/">Tools</a></li>
+            <li aria-current="page">Image to PDF</li>
+          </ol>
+        </nav>
+
+        <h1>Image to PDF</h1>
+        <p class="text-muted">Turn JPG, PNG and WebP images into one PDF. Choose the order and page settings. Everything happens in your browser.</p>
+
+        <!-- Step 1: images -->
+        <div class="card mt-4">
+          <h2 class="card__title">1. Choose images</h2>
+          <label class="drop-zone" id="itp-drop" for="itp-file">
+            <span id="itp-drop-text">Tap to choose images, or drag them here</span>
+          </label>
+          <input id="itp-file" class="visually-hidden" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+          <div id="itp-error" class="alert alert--error mt-2" role="alert" hidden></div>
+          <ul id="itp-list" class="img-list mt-2"></ul>
+        </div>
+
+        <!-- Step 2: settings -->
+        <div class="card mt-4" id="itp-controls" hidden>
+          <h2 class="card__title">2. Page settings</h2>
+
+          <div class="field">
+            <label for="itp-pagesize">Page size</label>
+            <select id="itp-pagesize">
+              <option value="a4" selected>A4 (standard, most printing)</option>
+              <option value="letter">Letter (US standard)</option>
+              <option value="fit">Fit to image (no extra space)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="itp-orient">Orientation</label>
+            <select id="itp-orient">
+              <option value="auto" selected>Automatic (match the image)</option>
+              <option value="portrait">Portrait</option>
+              <option value="landscape">Landscape</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="itp-margin">Margin</label>
+            <select id="itp-margin">
+              <option value="0">No margin</option>
+              <option value="20" selected>Small</option>
+              <option value="40">Normal</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="itp-name">PDF file name</label>
+            <input id="itp-name" type="text" value="images" maxlength="60">
+          </div>
+
+          <div class="quiz-actions">
+            <button id="itp-clear" class="btn btn--outline" type="button">Clear all</button>
+            <button id="itp-create" class="btn btn--primary" type="button" disabled>Create PDF</button>
+          </div>
+          <div id="itp-status" class="text-muted mt-2" role="status" aria-live="polite"></div>
+        </div>
+
+        <!-- Step 3: result -->
+        <div class="card mt-4" id="itp-result" hidden>
+          <h2 class="card__title">3. Your PDF</h2>
+          <p id="itp-info"></p>
+          <a id="itp-download" class="btn btn--primary btn--block" href="#" download>Download PDF</a>
+        </div>
+
+        <!-- How to use and FAQ -->
+        <section class="mt-4">
+          <h2>How to convert images to PDF</h2>
+          <ol>
+            <li>Choose one or more JPG, PNG or WebP images. You can select many at once.</li>
+            <li>Use <strong>Up</strong> and <strong>Down</strong> to arrange them in the order you want. Each image becomes one page.</li>
+            <li>Pick the page size, orientation and margin.</li>
+            <li>Press <strong>Create PDF</strong> and download the file.</li>
+          </ol>
+
+          <h2 class="mt-4">Why convert images to PDF?</h2>
+          <p>A PDF keeps your pages in the same order on every device, and it is easy to email, print or upload. Job applications, college forms, receipts and scanned documents are often asked for as a single PDF, not as many separate photos.</p>
+
+          <p>If your PDF is too big, compress the photos first with our Image Compressor, then create the PDF. Smaller images make a smaller PDF.</p>
+
+          <h2 class="mt-4">Which page size should I choose?</h2>
+          <ul>
+            <li><strong>A4</strong>: the standard size in most countries, good for printing and official forms.</li>
+            <li><strong>Letter</strong>: the standard size in the United States and some other countries.</li>
+            <li><strong>Fit to image</strong>: each page is the exact size of its image, so there is no extra white space.</li>
+          </ul>
+
+          <h2 class="mt-4">Frequently asked questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Can I combine many images into one PDF?</summary>
+              <p>Yes. Add up to 50 images, arrange them in the order you want, and create one PDF with one image per page.</p>
+            </details>
+            <details>
+              <summary>Are my images uploaded to a server?</summary>
+              <p>No. The PDF is created inside your browser, and your images are not sent to Avisite's servers.</p>
+            </details>
+            <details>
+              <summary>Why is my PDF file large?</summary>
+              <p>Large photos make large PDFs. Compress the images first with the Image Compressor, or choose a smaller page size.</p>
+            </details>
+            <details>
+              <summary>Why does the PDF creation need an internet connection?</summary>
+              <p>The PDF library is loaded from a public CDN the first time you open this page. After it loads, your images are still processed only in your browser.</p>
+            </details>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="site-footer__links">
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/quiz/">Quiz</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+      </ul>
+      <p>&copy; 2026 Avisite. Your files are processed on your device.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

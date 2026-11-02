@@ -1,0 +1,25 @@
+groups:
+  - name: Image tools
+    items:
+      - title: Image Compressor
+        url: /tools/image-compressor.html
+        icon: "🖼️"
+        text: Reduce JPG, PNG and WebP file size without losing much quality.
+      - title: Image to PDF
+        url: /tools/image-to-pdf.html
+        icon: "📄"
+        text: Turn one or more images into a single PDF file.
+  - name: PDF tools
+    items:
+      - title: Merge PDF
+        url: /tools/merge-pdf.html
+        icon: "🔗"
+        text: Combine several PDF files into one document, in the order you choose.
+      - title: Compress PDF
+        url: /tools/compress-pdf.html
+        icon: "🗜️"
+        text: Make large PDF files smaller for email and uploads.
+      - title: PDF Pages
+        url: /tools/pdf-pages.html
+        icon: "📑"
+        text: Rotate, extract or delete pages of a PDF.

@@ -1,0 +1,13 @@
+title: Avisite
+description: Free image and PDF tools, plus a quiz maker. Files stay on your device.
+url: "https://avisite.com"
+baseurl: ""
+plugins:
+  - jekyll-sitemap
+exclude:
+  - blog/guide.md
+  - PLAN.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules

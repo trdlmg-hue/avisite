@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz - Avisite</title>
+  <meta name="description" content="Take your quiz in practice or exam mode on Avisite.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#6D28D9">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js" defer></script>
+  <script src="../js/quiz/engine.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/" class="logo" aria-label="Avisite home">Avisite</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="/">Home</a></li>
+          <li><a class="nav__link" href="/tools/">Tools</a></li>
+          <li><a class="nav__link" href="/quiz/">Quiz</a></li>
+          <li><a class="nav__link" href="/blog/">Blog</a></li>
+          <li><a class="nav__link" href="/about.html">About</a></li>
+          <li><a class="nav__link" href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <!-- Quiz screen -->
+        <div id="quiz-view">
+          <div class="quiz-top">
+            <div>
+              <h1 id="quiz-title" class="quiz-title"></h1>
+              <span id="mode-badge" class="pill"></span>
+              <span id="neg-badge" class="pill pill--warn" hidden></span>
+            </div>
+            <div id="timer" class="timer" aria-live="off"></div>
+          </div>
+
+          <div class="quiz-layout">
+            <div class="quiz-main card">
+              <p id="question-count" class="text-muted"></p>
+              <h2 id="question-text" class="question-text"></h2>
+
+              <div id="options" class="options"></div>
+              <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+
+              <div class="quiz-actions">
+                <button id="btn-prev" class="btn btn--outline" type="button">Previous</button>
+                <button id="btn-mark" class="btn btn--outline" type="button" aria-pressed="false">Mark for review</button>
+                <button id="btn-clear" class="btn btn--outline" type="button">Clear answer</button>
+                <button id="btn-next" class="btn btn--primary" type="button">Next</button>
+              </div>
+
+              <div class="mt-4">
+                <button id="btn-submit" class="btn btn--primary btn--block" type="button">Submit test</button>
+              </div>
+            </div>
+
+            <aside class="quiz-side card">
+              <h2 class="card__title">Questions</h2>
+              <p id="palette-summary" class="text-muted"></p>
+              <div id="palette" class="palette"></div>
+              <ul class="legend">
+                <li><span class="legend__box palette__btn is-correct"></span> Correct (practice)</li>
+                <li><span class="legend__box palette__btn is-wrong"></span> Wrong (practice)</li>
+                <li><span class="legend__box palette__btn is-answered"></span> Answered (exam)</li>
+                <li><span class="legend__box palette__btn is-unanswered"></span> Not answered</li>
+                <li><span class="legend__box palette__btn is-marked"></span> Marked for review (border)</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Result screen -->
+        <div id="result-view" hidden>
+          <h1>Test result</h1>
+          <p id="result-mode" class="text-muted"></p>
+
+          <div id="time-up-notice" class="alert alert--error" hidden>
+            Time is up. Your test was submitted automatically.
+          </div>
+
+          <div id="result-summary" class="stats mt-4"></div>
+
+          <h2 class="card__title mt-4">Question map</h2>
+          <div id="result-palette" class="palette"></div>
+          <ul class="legend">
+            <li><span class="legend__box palette__btn is-correct"></span> Correct</li>
+            <li><span class="legend__box palette__btn is-wrong"></span> Wrong</li>
+            <li><span class="legend__box palette__btn is-unanswered"></span> Not answered</li>
+          </ul>
+
+          <div class="quiz-actions mt-4">
+            <button id="btn-retry" class="btn btn--primary" type="button">Retake this quiz</button>
+            <a class="btn btn--outline" href="/quiz/start.html">Upload another quiz</a>
+          </div>
+
+          <h2 class="mt-4">Review</h2>
+          <p class="text-muted">Check each answer, the correct option, and the explanation.</p>
+          <div id="review-list"></div>
+
+          <h2 class="mt-4">Your recent attempts</h2>
+          <div id="history-list"></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="site-footer__links">
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/quiz/">Quiz</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+      </ul>
+      <p>&copy; 2026 Avisite. Your files are processed on your device.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
