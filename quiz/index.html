@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Quiz Maker and Exam Practice from Your PDF - Avisite</title>
+  <meta name="description" content="Turn your study PDFs into a question bank with AI, then take practice or exam-style tests with timer, negative marking and a full review. Free, in your browser.">
+  <link rel="canonical" href="https://avisite.com/quiz/">
+  <meta property="og:title" content="Free Quiz Maker and Exam Practice from Your PDF - Avisite">
+  <meta property="og:description" content="Create a question bank from your PDFs and take exam-style tests, free.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avisite.com/quiz/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/" class="logo" aria-label="Avisite home">Avisite</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="/">Home</a></li>
+          <li><a class="nav__link" href="/tools/">Tools</a></li>
+          <li><a class="nav__link" href="/quiz/" aria-current="page">Quiz</a></li>
+          <li><a class="nav__link" href="/blog/">Blog</a></li>
+          <li><a class="nav__link" href="/about.html">About</a></li>
+          <li><a class="nav__link" href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tools/">Tools</a></li>
+            <li aria-current="page">Quiz</li>
+          </ol>
+        </nav>
+
+        <h1>Quiz maker and exam practice</h1>
+        <p class="text-muted">Turn your study PDFs into a question bank, then take practice or exam-style tests. Everything runs in your browser.</p>
+
+        <div class="grid grid--3 mt-4">
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">1</div>
+            <h2 class="card__title">Create questions</h2>
+            <p class="card__text">Copy our prompt, add your PDF in ChatGPT or Claude, and save the JSON file. Upload as many files as you like.</p>
+            <a class="btn btn--outline mt-2" href="/quiz/prompt.html">Get the prompt</a>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">2</div>
+            <h2 class="card__title">Build your test</h2>
+            <p class="card__text">Pick topics and the number of questions. We choose a balanced set from your question bank for you.</p>
+            <a class="btn btn--outline mt-2" href="/quiz/start.html">Build a test</a>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">3</div>
+            <h2 class="card__title">Practice or take the exam</h2>
+            <p class="card__text">Practice mode gives instant feedback. Exam mode shows your score and full review at the end.</p>
+          </div>
+        </div>
+
+        <h2 class="mt-4">Features</h2>
+        <div class="grid grid--2 mt-2">
+          <div class="card">
+            <h3 class="card__title">Exam-style timer</h3>
+            <p class="card__text">Countdown timer with a warning in the last 5 minutes, and auto-submit when time is up.</p>
+          </div>
+          <div class="card">
+            <h3 class="card__title">Question palette</h3>
+            <p class="card__text">See answered, unanswered and marked-for-review questions at a glance.</p>
+          </div>
+          <div class="card">
+            <h3 class="card__title">Negative marking</h3>
+            <p class="card__text">Turn it on or off, and choose the penalty for each wrong answer.</p>
+          </div>
+          <div class="card">
+            <h3 class="card__title">Saved progress and history</h3>
+            <p class="card__text">Resume an unfinished test later. Your past attempts are saved in your browser.</p>
+          </div>
+        </div>
+
+        <h2 class="mt-4">Frequently asked questions</h2>
+        <div class="faq">
+          <details>
+            <summary>Is my PDF uploaded to Avisite?</summary>
+            <p>No. You upload the PDF to ChatGPT or Claude yourself. Avisite only reads the JSON file you upload here, and it stays in your browser.</p>
+          </details>
+          <details>
+            <summary>Will my progress be saved?</summary>
+            <p>Yes, in this browser. Clearing your browser data will remove saved progress and history.</p>
+          </details>
+          <details>
+            <summary>Can I combine questions from several PDFs?</summary>
+            <p>Yes. Upload several quiz files and they go into one question bank. Duplicate questions are skipped automatically.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="site-footer__links">
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/quiz/">Quiz</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+      </ul>
+      <p>&copy; 2026 Avisite. Your files are processed on your device.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

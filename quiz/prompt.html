@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create a Quiz from Your PDF with AI - Avisite</title>
+  <meta name="description" content="Copy a ready-made prompt, paste it into ChatGPT or Claude with your PDF, and get a quiz JSON file to practice or take as a timed exam on Avisite.">
+  <link rel="canonical" href="https://avisite.com/quiz/prompt.html">
+  <meta property="og:title" content="Create a Quiz from Your PDF with AI - Avisite">
+  <meta property="og:description" content="Turn any PDF into a quiz using ChatGPT or Claude.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://avisite.com/quiz/prompt.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js" defer></script>
+  <script src="../js/quiz/prompt.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/" class="logo" aria-label="Avisite home">Avisite</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="/">Home</a></li>
+          <li><a class="nav__link" href="/tools/">Tools</a></li>
+          <li><a class="nav__link" href="/quiz/">Quiz</a></li>
+          <li><a class="nav__link" href="/blog/">Blog</a></li>
+          <li><a class="nav__link" href="/about.html">About</a></li>
+          <li><a class="nav__link" href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tools/">Tools</a></li>
+            <li><a href="/quiz/">Quiz</a></li>
+            <li aria-current="page">Quiz Prompt</li>
+          </ol>
+        </nav>
+
+        <h1>Create a quiz from your PDF</h1>
+        <p class="text-muted">Use an AI tool like ChatGPT or Claude to turn your study material into a quiz file. Then upload it to Avisite and start practicing or take a timed exam.</p>
+
+        <h2 class="mt-4">Step 1: Enter pages and copy the prompt</h2>
+        <div class="card">
+          <div class="prompt-inputs">
+            <div class="field">
+              <label for="from-page">From page</label>
+              <input id="from-page" type="number" min="1" value="1" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="to-page">To page</label>
+              <input id="to-page" type="number" min="1" value="15" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="question-count">Number of questions</label>
+              <input id="question-count" type="number" min="1" max="50" value="15" inputmode="numeric">
+            </div>
+          </div>
+          <p id="page-error" class="alert alert--error" role="alert" hidden></p>
+          <textarea id="quiz-prompt" class="prompt-box" readonly rows="10" aria-label="Quiz generation prompt"></textarea>
+          <div class="mt-2" style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+            <button class="btn btn--primary" type="button" id="copy-prompt">Copy prompt</button>
+            <span id="copy-status" class="text-muted" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <h2 class="mt-4">Step 2: Upload your PDF to the AI</h2>
+        <p>Open ChatGPT or Claude, attach your PDF, paste the copied prompt, and send. The AI will reply with the JSON.</p>
+        <p class="text-muted">Large PDF? Change the page numbers, for example pages 16 to 30, and repeat in the same chat. Save each reply as a separate file, and upload them all together on the start page.</p>
+
+        <h2 class="mt-4">Step 3: Save the JSON as a file</h2>
+        <p>Copy only the JSON (starting with <code>{</code> and ending with <code>}</code>). Paste it into a plain text editor like Notepad, and save it as <strong>quiz.json</strong>. Do not add any extra text above or below it.</p>
+
+        <h2 class="mt-4">Step 4: Start your quiz</h2>
+        <p>
+          <a class="btn btn--primary" href="/quiz/start.html">Go to quiz upload</a>
+        </p>
+
+        <h2 class="mt-4">Tips for a good quiz</h2>
+        <ul>
+          <li>Use clear, text-based PDFs. Scanned images may not be read properly.</li>
+          <li>Ask for fewer questions (like 20) if the PDF is short, or split a long PDF into parts.</li>
+          <li>Always check the answers once before taking an exam.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="site-footer__links">
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+      </ul>
+      <p>&copy; 2026 Avisite. Your files are processed on your device.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
